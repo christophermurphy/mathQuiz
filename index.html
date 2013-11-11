@@ -1,120 +1,83 @@
 <html>
  <head>
+	<title>Starter Template for Bootstrap</title>
 
- <style>
-.problem { width: 10%; float: left; margin: 7%; margin-top: 40px; margin-bottom: 20px; padding-bottom: 0px;}
-.px { text-align: right; clear: both; float: right; }
-.py { text-align: right; float: right; }
-.answer { text-align: right; clear: both; float: right; padding-top: 4px;  border-top: 1px solid black;  }
-input {width:100%; text-align:right;}
-body { width: 8in; height: 10in; font-size: 140%; background-color:#CCCCCC;}
-.correct {background-color: #33CC00;}
-.incorrect {background-color: red;}
-.active {background-color: #FFFF00}
-.inactive {background-color: #CCCCCC}
+	 <style>
+		.problem { width: 10%; float: left; margin: 7%; margin-top: 40px; margin-bottom: 20px; padding-bottom: 0px;}
+		.px { text-align: right; clear: both; float: right; }
+		.py { text-align: right; float: right; }
+		.answer { text-align: right; clear: both; float: right; padding-top: 4px;  border-top: 1px solid black;  }
+		.inputAnswer {width:100%; text-align:right;}
+		.correct {background-color: #33CC00;}
+		.incorrect {background-color: red;}
+		.active {background-color: #FFFF00}
+		.inactive {background-color: #CCCCCC}
+	 </style>
 
- </style>
+	<!-- Bootstrap core CSS -->
+	<link href="../simple-sidebar/css/bootstrap.css" rel="stylesheet">
 
+	<!-- Add custom CSS here -->
+	<link href="../simple-sidebar/css/simple-sidebar.css" rel="stylesheet">
+	<link href="../simple-sidebar/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
- <script src="https://www.google.com/jsapi" type="text/javascript"> </script>
- 
-
-  <script type="text/javascript">
-google.load("jquery", "1.5.2");
-  </script>
-
-    <script type="text/javascript">
-var probArray = ["-", "*", "+"];
-var random = function(max, min){
-    return Math.floor(Math.random()*(max-min)) + min;
-};
-
-var problemtype = probArray[random(3,0)];
-
-var randomDigits = function(max, min, digits){
-};
-
-var generateProblem = function(){
-    var x = random(10,5);
-    var y = random(10,0);
-
-    if(Math.min(x,y) == x){
-        return {'x': y, 'op':problemtype, 'y': x };
-    }else{
-        return {'x': x, 'op':problemtype, 'y': y };
-    }
-};
-
-var initializePage = function () {
-	$('.inputAnswer').parent().addClass('inactive');
-	$('#correctSum').html($('.correct').length);
-	$('#incorrectSum').html($('.incorrect').length);
-	$('#unansweredSum').html($('.inactive').length);
-
-};
-
-
-$(function() {
-    for(var i = 0; i < 12; i++){
-        var p = generateProblem();
-        $('body').append("<div class='problem' id='problem_"+i+"'><span id='px_"+i+"' class='px'>" + p.x + "</span><br />" +
-            "<span class='op'>" + p.op + "</span>" +
-            "<span id='py_"+i+"' class='py'>" + p.y + "</span>" +
-            "<span class='answer'><input type='text' class='inputAnswer' name='test_"+i+"' id='test_"+i+"' /></span></div>");
-    }
-	var init = initializePage();
-	$('.inputAnswer').blur(function() {
-		var currentId = $(this).attr('id').split('_');
-		var xValue = 'px_'+currentId[1];
-		var yValue = 'py_'+currentId[1];
-		
-		if (problemtype == '+') {
-		var ans = ($('#'+xValue).html()*1) + ($('#'+yValue).html()*1);
-		}
-		if (problemtype == '-') {
-		var ans = ($('#'+xValue).html()*1) - ($('#'+yValue).html()*1);
-		}
-		if (problemtype == '*') {
-		var ans = ($('#'+xValue).html()*1) * ($('#'+yValue).html()*1);
-		}
-//		console.log(ans);
-		if (ans == $(this).val()) {
-			$('#test_'+currentId[1]).removeClass('incorrect').addClass("correct");
-		} 
-		if (ans != $(this).val() && $(this).val().length>0) {
-			$('#test_'+currentId[1]).removeClass( "correct" ).addClass( "incorrect" );			
-		}		
-	});
-	$('.inputAnswer').focus(function() {			
-			$(this).parent()
-				   .removeClass( "inactive" )
-			       .addClass('active');
-			$('#correctSum').html($('.correct').length);
-			$('#incorrectSum').html($('.incorrect').length);
-	});
-	$('input').blur(function() {
-			$(this).parent()
-				   .removeClass( "active" )
-				   .addClass('inactive');
-			$('#correctSum').html($('.correct').length);
-			$('#incorrectSum').html($('.incorrect').length);			
-			$('#unansweredSum').html(' ').html($('input:text[value=""]').length);
-			console.log($('input:text[value=""]').length)
-	});
-	
-    
-});
-
-    </script>
  </head>
  <body>
- <div>My Game 
-   <span>
-     <div>Correct <span id="correctSum"></span><div>
-     <div>Incorrect <span id="incorrectSum"></span><div>
-     <div>Unanswered <span id="unansweredSum"></span><div>
-   </span>
- </div>
- 
+	<div id="wrapper">
+	    <!-- Sidebar -->
+		<div id="sidebar-wrapper">
+		   <ul class="sidebar-nav">
+			   <li class="sidebar-brand"><a>PER'S GAME</a></li>
+			   <li><a>Correct <span id="correctSum"></span></a></li>
+			   <li><a>Incorrect <span id="incorrectSum"></span></a></li>
+			   <li><a>Unanswered <span id="unansweredSum"></span></a></li>
+		   </ul>
+		</div>
+		<!-- Page content -->
+		<div id="page-content-wrapper">
+            <div class="content-header">
+                <a id="menu-toggle" href="#" class="btn button-default"><i class="icon-reorder"></i></a>
+            </div>
+			<div class="page-content inset">
+				<div class="row">
+					<div class="col-md-12">
+                    <h3>
+                        <div class="col-md-2">
+                            <label for="add">+</label> <input type="checkbox" id="add" name="add" value="multiply" checked="checked" class="inset"/>
+                        </div>
+                        </h3>
+                        <h3>
+                        <div class="col-md-2">
+						<label for="subtract">-</label> <input type="checkbox" id="subtract" name="subtract" value="multiply" checked="checked"/>
+                        </div>
+                        </h3>
+                        <h3>
+                        <div class="col-md-2">
+						<label for="multiply">X</label> <input type="checkbox" id="multiply" name="multiply" value="multiply" checked="checked"/>
+                        </h3>
+                        </div>
+
+					</div>                
+				</div>
+				<div class="row">
+					<div id="workspace" class="col-md-12">
+					</div>
+				</div>
+			<div>
+		</div>
+	</div>
+	
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="../lib/jquery/jquery-1.10.1.min.js" type="text/javascript"> </script>
+    <script src="../simple-sidebar/js/bootstrap.js" type="text/javascript"></script>
+    <!-- Put this into a custom JavaScript file to make things more organized -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("active");
+		$('.dropdown-toggle').dropdown();
+    });
+    </script>
  </body>
 </html>
