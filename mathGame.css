@@ -1,0 +1,45 @@
+.problem { 
+	width: 10%; 
+    float: left; 
+    margin: 7%; 
+    margin-top: 40px; 
+    margin-bottom: 20px; 
+    padding-bottom: 0px;
+    }
+
+.px { 
+    text-align: right; 
+    clear: both; 
+    float: right; 
+    }
+    
+.py { 
+    text-align: right; 
+    float: right;  
+    }
+    
+.answer { 
+    text-align: right; 
+    clear: both; 
+    float: right; 
+    padding-top: 4px;  
+    border-top: 1px solid black;  
+    }
+    
+.inputAnswer { 
+    width:100%; 
+    text-align:right;
+    }
+
+.correct { 
+    background-color: #FFFFFF;
+    }
+.incorrect { 
+    background-color: red;
+    }
+.active { 
+    background-color: #FFFF00;
+    }
+.inactive { 
+    background-color: #CCCCCC;
+    }
